@@ -1,0 +1,64 @@
+[project]
+name = "historical-lm"
+version = "0.1.0"
+description = "Data collection and processing pipeline for historical English language modelling"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # Data processing
+    "polars>=1.0.0",
+    "pyarrow>=14.0.0",
+    # HuggingFace datasets (streaming support)
+    "datasets<4.0.0",
+    "huggingface-hub>=0.21.0",
+    # HTTP / download
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "tqdm>=4.66.0",
+    # NLP utilities
+    "langdetect>=1.0.9",
+    # Dev tools
+    "pre-commit",
+    "ipython",
+    "ipdb>=0.13.13",
+    "transformers==4.49",
+    "tokenizers>=0.21.4",
+    "matplotlib>=3.10.9",
+    "accelerate>=1.14.0",
+    "scipy>=1.18.0",
+]
+
+[dependency-groups]
+dev = [
+    "darglint==1.8.1",
+    "flake8",
+    "flake8-annotations",
+    "flake8-docstrings",
+    "flake8-quotes",
+    "isort",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 160
+exclude = [".git", "__pycache__", "build", "dist"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "W", "D", "Q"]
+extend-ignore = ["E731", "D105"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+docstring-quotes = "double"
